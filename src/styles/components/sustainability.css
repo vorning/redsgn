@@ -1,0 +1,637 @@
+/* src/styles/components/sustainability.css */
+.sustainability {
+    padding: 5rem 0;
+    background-color: var(--background-alt, #f5f5f5);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  
+  .sustainability::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 40%;
+    height: 70%;
+    background-color: var(--secondary, #e0e0dc);
+    opacity: 0.4;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    z-index: -1;
+  }
+  
+  .sustainability::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 40%;
+    height: 60%;
+    background-color: var(--secondary, #e0e0dc);
+    opacity: 0.3;
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    z-index: -1;
+  }
+  
+  .sustainability-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 3rem 0;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+  
+  .tab-btn {
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text, #333333);
+    min-width: 180px;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background-color: var(--background, #ffffff);
+  }
+  
+  .tab-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
+  }
+  
+  .tab-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .tab-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .tab-btn.active {
+    font-weight: 600;
+    color: white;
+    background-color: var(--primary, #000000);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .tab-btn.active .tab-icon {
+    transform: scale(1.1);
+  }
+  
+  .tab-content {
+    background-color: var(--background, #ffffff);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    min-height: 400px;
+  }
+  
+  .tab-panel {
+    padding: 3rem 2rem;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .tab-header {
+    margin-bottom: 2.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tab-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tab-decoration {
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary, #000000);
+    border-radius: 2px;
+  }
+  
+  .panel-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+  
+  .text-content {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .lead-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .principle-card {
+    padding: 1.5rem;
+    background-color: var(--background-alt, #f5f5f5);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .principle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .principle-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary, #000000);
+    color: white;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .principle-card:hover .principle-icon {
+    transform: rotate(360deg);
+  }
+  
+  .principle-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .principle-card h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .principle-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .visual-content {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .infographic {
+    width: 100%;
+    background-color: var(--background-alt, #f5f5f5);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .infographic-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  /* New styles for energy facts section */
+  .energy-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .energy-fact {
+    background-color: var(--background, #ffffff);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .energy-fact:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .energy-fact h4 {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    color: var(--primary, #000000);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .energy-fact h4::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--primary, #000000);
+  }
+  
+  .energy-fact p {
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  .key-stat {
+    background-color: var(--primary, #000000);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .key-stat p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  
+  /* Benefits Tab Styles */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+  }
+  
+  .benefit-card {
+    background-color: var(--background-alt, #f5f5f5);
+    border-radius: 10px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background-color: var(--primary, #000000);
+    transition: height 0.3s ease;
+    z-index: -1;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+  
+  .benefit-card:hover::before {
+    height: 100%;
+  }
+  
+  .benefit-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .benefit-card:hover .benefit-icon {
+    background-color: var(--primary, #000000);
+    color: white;
+  }
+  
+  .benefit-icon svg {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .benefit-card h4 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .benefit-card p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .benefit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .benefit-list li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  
+  .benefit-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary, #000000);
+    font-weight: bold;
+  }
+  
+  /* Process Tab Styles */
+  .process-container {
+    width: 100%;
+  }
+  
+  .process-timeline {
+    position: relative;
+    padding-left: 50px;
+  }
+  
+  .process-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 25px;
+    height: 100%;
+    width: 2px;
+    background-color: var(--secondary, #e0e0dc);
+  }
+  
+  .process-step {
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  
+  .process-step:last-child {
+    margin-bottom: 0;
+  }
+  
+  .step-content {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .step-number {
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary, #000000);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .step-details {
+    flex: 1;
+    background-color: var(--background-alt, #f5f5f5);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .process-step:hover .step-details {
+    transform: translateX(10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  }
+  
+  .step-details h4 {
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    color: var(--primary, #000000);
+  }
+  
+  .step-details p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .step-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .feature {
+    padding: 0.4rem 0.8rem;
+    background-color: white;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .process-step:hover .feature {
+    background-color: var(--primary, #000000);
+    color: white;
+  }
+  
+  .process-cta {
+    margin-top: 3rem;
+    text-align: center;
+  }
+  
+  .process-cta .btn {
+    padding: 0.9rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .process-cta .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: width 0.3s ease;
+    z-index: -1;
+  }
+  
+  .process-cta .btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .process-cta .btn:hover::before {
+    width: 100%;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .sustainability {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  
+  .sustainability.visible {
+    opacity: 1;
+  }
+  
+  .sustainability.visible .principle-card,
+  .sustainability.visible .benefit-card,
+  .sustainability.visible .process-step,
+  .sustainability.visible .energy-fact {
+    animation: slideUp 0.8s ease backwards;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .principle-card:nth-child(1),
+  .benefit-card:nth-child(1),
+  .process-step:nth-child(1),
+  .energy-fact:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  
+  .principle-card:nth-child(2),
+  .benefit-card:nth-child(2),
+  .process-step:nth-child(2),
+  .energy-fact:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+  
+  .principle-card:nth-child(3),
+  .benefit-card:nth-child(3),
+  .process-step:nth-child(3),
+  .energy-fact:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  
+  .principle-card:nth-child(4),
+  .benefit-card:nth-child(4),
+  .process-step:nth-child(4) {
+    animation-delay: 0.8s;
+  }
+  
+  .key-stat {
+    animation: slideUp 0.8s ease backwards;
+    animation-delay: 0.8s;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .sustainability-tabs {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .tab-btn {
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    .tab-panel {
+      padding: 2rem 1.5rem;
+    }
+    
+    .panel-content {
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .principles-grid,
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .process-timeline {
+      padding-left: 40px;
+    }
+    
+    .process-timeline::before {
+      left: 20px;
+    }
+    
+    .step-number {
+      left: -40px;
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+    
+    .step-content {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .infographic {
+      padding: 1.5rem;
+    }
+    
+    .energy-facts {
+      gap: 1rem;
+    }
+    
+    .energy-fact {
+      padding: 1.2rem;
+    }
+    
+    .key-stat {
+      padding: 1.2rem;
+    }
+    
+    .key-stat p {
+      font-size: 1rem;
+    }
+  }

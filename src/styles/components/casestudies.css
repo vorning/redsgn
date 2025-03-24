@@ -1,0 +1,212 @@
+/* src/styles/components/casestudies.css */
+:root {
+  --background-light: #ffffff;
+  --background-alt-light: #f5f5f5;
+  --text-light: #333333;
+  --primary-light: #000000;
+  --secondary-light: #e0e0dc;
+
+  --background-dark: #1a1a1a;
+  --background-alt-dark: #2a2a2a;
+  --text-dark: #e0e0e0;
+  --primary-dark: #ffffff;
+  --secondary-dark: #3a3a3a;
+}
+
+.case-studies {
+  padding: 5rem 0;
+  background-color: var(--background, var(--background-light));
+  color: var(--text, var(--text-light));
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cases-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.case-tab {
+  padding: 0.75rem 1.5rem;
+  background: none;
+  border: 2px solid var(--secondary, var(--secondary-light));
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  color: var(--text, var(--text-light));
+}
+
+.case-tab::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary, var(--primary-light));
+  z-index: -1;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.case-tab:hover {
+  background-color: rgb(197, 197, 197);
+}
+
+.case-tab:hover::before {
+  transform: translateY(0);
+}
+
+.case-tab.active {
+  background-color: var(--primary, var(--primary-light));
+  color: var(--background, var(--background-light));
+  border-color: var(--primary, var(--primary-light));
+}
+
+.case-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  background-color: var(--background-alt, var(--background-alt-light));
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.5s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.case-image {
+  flex: 1;
+  min-width: 300px;
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.case-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary, var(--secondary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text, var(--text-light));
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.case-details {
+  flex: 1;
+  min-width: 300px;
+}
+
+.case-details h3 {
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+  color: var(--primary, var(--primary-light));
+  transition: color 0.3s ease;
+}
+
+.case-details h3::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--primary, var(--primary-light));
+  transition: background-color 0.3s ease, width 0.3s ease;
+}
+
+.case-details p {
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.case-metrics {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--secondary, var(--secondary-light));
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.metric:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.metric.highlight {
+  font-weight: 600;
+  color: var(--primary, var(--primary-light));
+  transition: color 0.3s ease;
+}
+
+.metric-label {
+  color: var(--text, var(--text-light));
+  transition: color 0.3s ease;
+}
+
+.metric-value {
+  font-weight: 600;
+}
+
+.case-details .btn {
+  margin-top: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .case-studies {
+    --background: var(--background-dark);
+    --background-alt: var(--background-alt-dark);
+    --text: var(--text-dark);
+    --primary: var(--primary-dark);
+    --secondary: var(--secondary-dark);
+  }
+
+  .case-metrics {
+    background-color: var(--background-alt, var(--background-alt-dark));
+  }
+}
+
+@media (max-width: 768px) {
+  .cases-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .case-tab {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+}

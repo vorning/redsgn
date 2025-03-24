@@ -1,0 +1,244 @@
+/* src/styles/components/footer.css */
+.footer {
+    background-color: var(--primary, #000000);
+    color: white;
+    padding: 5rem 0 2rem;
+    position: relative;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .footer-brand {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .footer-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+  }
+  
+  .footer-tagline {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+  
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .footer-social a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .footer-social a:hover {
+    background-color: white;
+    color: var(--primary, #000000);
+    transform: translateY(-3px);
+  }
+  
+  .footer-links {
+    flex: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .footer-links-column {
+    flex: 1;
+    min-width: 160px;
+  }
+  
+  .footer-links-column h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .footer-links-column h3::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--secondary, #e0e0dc);
+  }
+  
+  .footer-links-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links-column li {
+    margin-bottom: 0.8rem;
+  }
+  
+  .footer-links-column a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .footer-links-column a::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transition: width 0.3s ease;
+  }
+  
+  .footer-links-column a:hover {
+    color: white;
+  }
+  
+  .footer-links-column a:hover::before {
+    width: 100%;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .copyright {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin: 0;
+  }
+  
+  .footer-legal {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .footer-legal a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-legal a:hover {
+    color: white;
+  }
+  
+  .sustainability-badge {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    perspective: 1000px;
+  }
+  
+  .badge-content {
+    background-color: var(--background, #ffffff);
+    color: var(--text, #333333);
+    border-radius: 30px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: 
+      all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1),
+      opacity 0.5s cubic-bezier(0.25, 0.1, 0.25, 1),
+      transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .badge-content:hover {
+    transform: translateY(-3px) rotateX(5deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .badge-content .close-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--primary, #000000);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: 
+      opacity 0.3s ease,
+      transform 0.3s ease;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .badge-content:hover .close-badge {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .badge-content.hidden {
+    opacity: 0;
+    transform: translateY(50px) rotateX(45deg);
+    pointer-events: none;
+  }
+  
+  .badge-icon {
+    font-size: 1.2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content,
+    .footer-links {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  
+    .footer-bottom {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .sustainability-badge {
+      bottom: 10px;
+      right: 10px;
+    }
+  
+    .badge-content {
+      padding: 0.3rem 0.8rem;
+      font-size: 0.7rem;
+    }
+  }
