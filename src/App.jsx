@@ -16,8 +16,22 @@ import Blog from "./components/Blog";
 import Co2Calculator from "./components/Co2Calculator";
 import FAQ from "./components/FAQ";
 
-// Hjemmeside (hovedside) komponent
 function HomePage({ darkMode, setDarkMode }) {
+  useEffect(() => {
+    // Vent lidt, så DOM'en når at loade
+    const timeout = setTimeout(() => {
+      const hash = window.location.hash;
+      if (hash) {
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, 100); // lille delay
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <>
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
