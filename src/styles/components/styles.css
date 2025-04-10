@@ -6,17 +6,15 @@
   --primary: #4f3d36;      /* Blå */
   --secondary: #797c97;    /* Grønlig */
   --accent: #8f9779;       /* Samme som secondary */
-  --text: #222222;         /* Sort */
+  --text: #ffffff;         /* Sort */
   --background: #f5f5f5;   /* Hvid */
   --background-alt: #dcded6; /* Tertiær (off-white) */
-
-  /* Dark mode colors */
   --primary-dark: #f5f5f5;     /* Hvid i dark mode */
   --secondary-dark: #8f9779;   /* Grønlig beholdes */
   --accent-dark: #dcded6;      /* Off-white som accent i dark mode */
   --text-dark: #f5f5f5;        /* Hvid tekst i dark mode */
   --background-dark: #36454f;  /* Blå som baggrund i dark mode */
-  --background-alt-dark: #222222; /* Sort som alternativ baggrund */
+  --background-alt-dark: #ffffff; /* Sort som alternativ baggrund */
 
   /* Typography */
   --font-main: "Helvetica", sans-serif;

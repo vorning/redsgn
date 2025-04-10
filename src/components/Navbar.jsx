@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll"; // Importer react-scroll Link
 import "../styles/components/navbar.css";
 import logo from "/src/assets/logo.png";
-
 
 function Navbar({ darkMode, setDarkMode }) {
   const [scrolled, setScrolled] = useState(false);
@@ -56,11 +56,7 @@ function Navbar({ darkMode, setDarkMode }) {
       <div className="navbar-container">
         <div className="logo">
           <Link to="/">
-            {darkMode ? (
-              <img src={logo} alt="RE:DESIGN" width="140" />
-            ) : (
-              <img src={logo} alt="RE:DESIGN" width="140" />
-            )}
+            <img src={logo} alt="RE:DESIGN" width="140" />
           </Link>
         </div>
 
@@ -68,9 +64,14 @@ function Navbar({ darkMode, setDarkMode }) {
           <ul>
             <li>
               {isHomePage ? (
-                <a href="#about" onClick={() => setMenuOpen(false)}>
+                <ScrollLink
+                  to="about"
+                  smooth={true}
+                  duration={200}
+                  onClick={() => setMenuOpen(false)}
+                >
                   Om os
-                </a>
+                </ScrollLink>
               ) : (
                 <Link to="/#about" onClick={() => setMenuOpen(false)}>
                   Om os
@@ -79,9 +80,14 @@ function Navbar({ darkMode, setDarkMode }) {
             </li>
             <li>
               {isHomePage ? (
-                <a href="#services" onClick={() => setMenuOpen(false)}>
+                <ScrollLink
+                  to="services"
+                  smooth={true}
+                  duration={200}
+                  onClick={() => setMenuOpen(false)}
+                >
                   Ydelser
-                </a>
+                </ScrollLink>
               ) : (
                 <Link to="/#services" onClick={() => setMenuOpen(false)}>
                   Ydelser
@@ -90,9 +96,14 @@ function Navbar({ darkMode, setDarkMode }) {
             </li>
             <li>
               {isHomePage ? (
-                <a href="#cases" onClick={() => setMenuOpen(false)}>
+                <ScrollLink
+                  to="cases"
+                  smooth={true}
+                  duration={200}
+                  onClick={() => setMenuOpen(false)}
+                >
                   Cases
-                </a>
+                </ScrollLink>
               ) : (
                 <Link to="/#cases" onClick={() => setMenuOpen(false)}>
                   Cases
@@ -101,9 +112,14 @@ function Navbar({ darkMode, setDarkMode }) {
             </li>
             <li>
               {isHomePage ? (
-                <a href="#contact" onClick={() => setMenuOpen(false)}>
+                <ScrollLink
+                  to="contact"
+                  smooth={true}
+                  duration={200}
+                  onClick={() => setMenuOpen(false)}
+                >
                   Kontakt
-                </a>
+                </ScrollLink>
               ) : (
                 <Link to="/#contact" onClick={() => setMenuOpen(false)}>
                   Kontakt

@@ -1,10 +1,16 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom"; // Brug Link til undersider
+import { Link as ScrollLink } from "react-scroll"; // Brug ScrollLink til sektioner på forsiden
 import "../styles/components/footer.css";
 
 function Footer() {
   const [hideBadge, setHideBadge] = useState(false);
   const [badgeClosed, setBadgeClosed] = useState(false);
   const currentYear = new Date().getFullYear();
+  const location = useLocation(); // Brug location til at tjekke, hvilken side vi er på
+
+  // Funktion til at afgøre om vi er på forsiden
+  const isHomePage = location.pathname === "/";
 
   const handleCloseBadge = (e) => {
     e.stopPropagation();
@@ -100,19 +106,49 @@ function Footer() {
               <h3>Sider</h3>
               <ul>
                 <li>
-                  <a href="#home">Forside</a>
+                  {isHomePage ? (
+                    <ScrollLink to="home" smooth={true} duration={200}>
+                      Forside
+                    </ScrollLink>
+                  ) : (
+                    <Link to="/">Forside</Link> // Brug Link til at navigere til forsiden
+                  )}
                 </li>
                 <li>
-                  <a href="#about">Om os</a>
+                  {isHomePage ? (
+                    <ScrollLink to="about" smooth={true} duration={200}>
+                      Om os
+                    </ScrollLink>
+                  ) : (
+                    <Link to="/#about">Om os</Link> // Brug Link til at navigere til #about på forsiden
+                  )}
                 </li>
                 <li>
-                  <a href="#services">Ydelser</a>
+                  {isHomePage ? (
+                    <ScrollLink to="services" smooth={true} duration={200}>
+                      Ydelser
+                    </ScrollLink>
+                  ) : (
+                    <Link to="/#services">Ydelser</Link> // Brug Link til at navigere til #services på forsiden
+                  )}
                 </li>
                 <li>
-                  <a href="#cases">Cases</a>
+                  {isHomePage ? (
+                    <ScrollLink to="cases" smooth={true} duration={200}>
+                      Cases
+                    </ScrollLink>
+                  ) : (
+                    <Link to="/#cases">Cases</Link> // Brug Link til at navigere til #cases på forsiden
+                  )}
                 </li>
                 <li>
-                  <a href="#contact">Kontakt</a>
+                  {isHomePage ? (
+                    <ScrollLink to="contact" smooth={true} duration={200}>
+                      Kontakt
+                    </ScrollLink>
+                  ) : (
+                    <Link to="/#contact">Kontakt</Link> // Brug Link til at navigere til #contact på forsiden
+                  )}
                 </li>
               </ul>
             </div>
@@ -121,16 +157,40 @@ function Footer() {
               <h3>Ydelser</h3>
               <ul>
                 <li>
-                  <a href="#services">Webdesign</a>
+                  {isHomePage ? (
+                    <ScrollLink to="services" smooth={true} duration={200}>
+                      Webdesign
+                    </ScrollLink>
+                  ) : (
+                    <Link to="/#services">Webdesign</Link>
+                  )}
                 </li>
                 <li>
-                  <a href="#services">Performance Optimering</a>
+                  {isHomePage ? (
+                    <ScrollLink to="services" smooth={true} duration={200}>
+                      Performance Optimering
+                    </ScrollLink>
+                  ) : (
+                    <Link to="/#services">Performance Optimering</Link>
+                  )}
                 </li>
                 <li>
-                  <a href="#services">Hosting</a>
+                  {isHomePage ? (
+                    <ScrollLink to="services" smooth={true} duration={200}>
+                      Hosting
+                    </ScrollLink>
+                  ) : (
+                    <Link to="/#services">Hosting</Link>
+                  )}
                 </li>
                 <li>
-                  <a href="#services">Digital Strategi</a>
+                  {isHomePage ? (
+                    <ScrollLink to="services" smooth={true} duration={200}>
+                      Digital Strategi
+                    </ScrollLink>
+                  ) : (
+                    <Link to="/#services">Digital Strategi</Link>
+                  )}
                 </li>
               </ul>
             </div>
@@ -139,13 +199,13 @@ function Footer() {
               <h3>Ressourcer</h3>
               <ul>
                 <li>
-                  <a href="blog">Blog</a>
+                  <Link to="/blog">Blog</Link>
                 </li>
                 <li>
-                  <a href="co2-beregner">CO2 Beregner</a>
+                  <Link to="/co2-beregner">CO2 Beregner</Link>
                 </li>
                 <li>
-                  <a href="faq">FAQ</a>
+                  <Link to="/faq">FAQ</Link>
                 </li>
               </ul>
             </div>
@@ -157,9 +217,25 @@ function Footer() {
             © {currentYear} RE:DESIGN. Alle rettigheder forbeholdes.
           </p>
           <div className="footer-legal">
-            <a href="#privacy">Privatlivspolitik</a>
-            <a href="#terms">Vilkår og betingelser</a>
-            <a href="#cookies">Cookies</a>
+            {isHomePage ? (
+              <>
+                <ScrollLink to="privacy" smooth={true} duration={200}>
+                  Privatlivspolitik
+                </ScrollLink>
+                <ScrollLink to="terms" smooth={true} duration={200}>
+                  Vilkår og betingelser
+                </ScrollLink>
+                <ScrollLink to="cookies" smooth={true} duration={200}>
+                  Cookies
+                </ScrollLink>
+              </>
+            ) : (
+              <>
+                <Link to="/privacy">Privatlivspolitik</Link>
+                <Link to="/terms">Vilkår og betingelser</Link>
+                <Link to="/cookies">Cookies</Link>
+              </>
+            )}
           </div>
         </div>
 
