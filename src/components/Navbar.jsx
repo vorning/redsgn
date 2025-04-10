@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/components/navbar.css";
-import "/src/assets/logo.jpg";
+import "/src/assets/logo.png";
 
 function Navbar({ darkMode, setDarkMode }) {
   const [scrolled, setScrolled] = useState(false);
