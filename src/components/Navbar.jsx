@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "../styles/components/navbar.css";
 
 function Navbar({ darkMode, setDarkMode }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [helpMenuOpen, setHelpMenuOpen] = useState(false);
+  const location = useLocation();
+
+  // Hjælpefunktion til at afgøre om vi er på forsiden
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,76 +27,159 @@ function Navbar({ darkMode, setDarkMode }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Luk hjælpemenuen når der klikkes udenfor
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (helpMenuOpen && !event.target.closest(".help-dropdown-container")) {
+        setHelpMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [helpMenuOpen]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+    <nav
+      className={`navbar ${scrolled ? "scrolled" : ""} ${
+        darkMode ? "dark-mode" : "light-mode"
+      }`}
+    >
       <div className="navbar-container">
         <div className="logo">
-          <a href="#home">REDSGN</a>
+          <Link to="/">
+            {darkMode ? (
+              <img
+                src="src/assets/Vector_Smart_Object.png"
+                alt="REDSGN"
+                width="140"
+              />
+            ) : (
+              <img
+                src="src/assets/Vector_Smart_Object.png"
+                alt="RE:DESIGN"
+                width="140"
+              />
+            )}
+          </Link>
         </div>
 
         <div className={`menu ${menuOpen ? "open" : ""}`}>
           <ul>
             <li>
-              <a href="#about" onClick={() => setMenuOpen(false)}>
-                Om os
-              </a>
+              {isHomePage ? (
+                <a href="#about" onClick={() => setMenuOpen(false)}>
+                  Om os
+                </a>
+              ) : (
+                <Link to="/#about" onClick={() => setMenuOpen(false)}>
+                  Om os
+                </Link>
+              )}
             </li>
             <li>
-              <a href="#services" onClick={() => setMenuOpen(false)}>
-                Ydelser
-              </a>
+              {isHomePage ? (
+                <a href="#services" onClick={() => setMenuOpen(false)}>
+                  Ydelser
+                </a>
+              ) : (
+                <Link to="/#services" onClick={() => setMenuOpen(false)}>
+                  Ydelser
+                </Link>
+              )}
             </li>
             <li>
-              <a href="#cases" onClick={() => setMenuOpen(false)}>
-                Cases
-              </a>
+              {isHomePage ? (
+                <a href="#cases" onClick={() => setMenuOpen(false)}>
+                  Cases
+                </a>
+              ) : (
+                <Link to="/#cases" onClick={() => setMenuOpen(false)}>
+                  Cases
+                </Link>
+              )}
             </li>
             <li>
-              <a href="#contact" onClick={() => setMenuOpen(false)}>
-                Kontakt
-              </a>
+              {isHomePage ? (
+                <a href="#contact" onClick={() => setMenuOpen(false)}>
+                  Kontakt
+                </a>
+              ) : (
+                <Link to="/#contact" onClick={() => setMenuOpen(false)}>
+                  Kontakt
+                </Link>
+              )}
+            </li>
+            <li className="help-dropdown-container">
+              <button
+                className="help-dropdown-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setHelpMenuOpen(!helpMenuOpen);
+                }}
+                aria-expanded={helpMenuOpen}
+              >
+                Hjælp
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className={`dropdown-arrow ${helpMenuOpen ? "open" : ""}`}
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+
+              {helpMenuOpen && (
+                <div className="help-dropdown-menu">
+                  <Link
+                    to="/blog"
+                    onClick={() => {
+                      setHelpMenuOpen(false);
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Blog
+                  </Link>
+                  <Link
+                    to="/co2-beregner"
+                    onClick={() => {
+                      setHelpMenuOpen(false);
+                      setMenuOpen(false);
+                    }}
+                  >
+                    CO2 Beregner
+                  </Link>
+                  <Link
+                    to="/faq"
+                    onClick={() => {
+                      setHelpMenuOpen(false);
+                      setMenuOpen(false);
+                    }}
+                  >
+                    FAQ
+                  </Link>
+                </div>
+              )}
             </li>
           </ul>
 
-          {/* <button
-            className="theme-toggle"
-            onClick={() => setDarkMode(!darkMode)}
-            aria-label={darkMode ? "Skift til lys tilstand" : "Skift til mørk tilstand"}
-          >
-            <span className="theme-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                {darkMode ? (
-                  <>
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                  </>
-                ) : (
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                )}
-              </svg>
-            </span>
-          </button> */}
         </div>
 
         <button
-          className="hamburger"
+          className={`hamburger ${menuOpen ? "active" : ""}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Luk menu" : "Åbn menu"}
         >

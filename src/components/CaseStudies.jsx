@@ -1,6 +1,11 @@
 import { useState } from "react";
 import "../styles/components/casestudies.css";
 
+// Importer billederne - justér stierne efter din mappestruktur
+import gardButikImage from "/src/assets/test1.jpg";
+import handvaerkerImage from "/src/assets/test2.jpg";
+import tojbutikImage from "/src/assets/test3.jpg";
+
 function CaseStudies() {
   const [activeCase, setActiveCase] = useState(0);
 
@@ -16,7 +21,7 @@ function CaseStudies() {
         afterSpeed: "1.8s",
         performanceImprovement: "65% hurtigere",
       },
-      image: "case1.jpg",
+      image: gardButikImage,
     },
     {
       title: "Lokal Håndværker",
@@ -29,7 +34,7 @@ function CaseStudies() {
         afterSpeed: "1.5s",
         performanceImprovement: "Betydelig hastighedsoptimering",
       },
-      image: "case2.jpg",
+      image: handvaerkerImage,
     },
     {
       title: "Tøjbutik Online",
@@ -42,7 +47,7 @@ function CaseStudies() {
         afterSpeed: "2.1s",
         performanceImprovement: "75% hurtigere indlæsning",
       },
-      image: "case3.jpg",
+      image: tojbutikImage,
     },
   ];
 
@@ -52,7 +57,8 @@ function CaseStudies() {
         <div className="section-header">
           <h2>Case Studies</h2>
           <p>
-            Se hvordan vi har hjulpet små virksomheder med effektive webløsninger
+            Se hvordan vi har hjulpet små virksomheder med effektive
+            webløsninger
           </p>
         </div>
 
@@ -69,10 +75,13 @@ function CaseStudies() {
         </div>
 
         <div className="case-content">
-          <div className="case-image placeholder">
-            {/* Replace with actual image */}
-            <div className="case-image-placeholder">
-              {cases[activeCase].image}
+          <div className="case-image">
+            <div className="responsive-image-container aspect-16-9">
+              <img
+                src={cases[activeCase].image}
+                alt={`Case studie for ${cases[activeCase].title}`}
+                className="case-img"
+              />
             </div>
           </div>
 

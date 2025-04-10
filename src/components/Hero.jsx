@@ -10,8 +10,8 @@ function Hero() {
           til små virksomheder
         </h1>
         <p>
-          Hos REDSGN skaber vi webløsninger der er brugervenlige, 
-          performante og optimerede til din forretning.
+          Hos RE:DESIGN skaber vi webløsninger der er brugervenlige, performante
+          og optimerede til din forretning.
         </p>
         <div className="hero-cta">
           <a href="#contact" className="btn btn-primary">

@@ -1,13 +1,11 @@
 /* src/styles/components/about.css */
 :root {
-  --background-light: #f5f5f5;
-  --background-dark: #1a1a1a;
-  --text-light: #333333;
-  --text-dark: #e0e0e0;
-  --primary-light: #000000;
-  --primary-dark: #ffffff;
-  --secondary-light: #e0e0dc;
-  --secondary-dark: #2c2c2c;
+  --primary: #36454f;      /* Blå */
+  --secondary: #8f9779;    /* Grønlig */
+  --accent: #8f9779;       /* Samme som secondary */
+  --text: #222222;         /* Sort */
+  --background: #f5f5f5;   /* Hvid */
+  --background-alt: #dcded6; /* Tertiær (off-white) */
 }
 
 .about {
@@ -110,6 +108,27 @@
   justify-content: center;
   animation: fadeInRight 1s ease;
 }
+
+/* Tilføj dette til din about.css fil */
+
+.about-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: block;
+  opacity: 80%;
+}
+
+.about-img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Du kan fjerne eller beholde .image-placeholder stilene hvis du vil, 
+   men de bruges ikke længere af komponenten */
 
 .image-placeholder {
   width: 100%;

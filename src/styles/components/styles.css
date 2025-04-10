@@ -1,0 +1,331 @@
+/* src/styles/styles.css - Opdateret med nye farver */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* Color palette - Light mode */
+  --primary: #4f3d36;      /* Blå */
+  --secondary: #797c97;    /* Grønlig */
+  --accent: #8f9779;       /* Samme som secondary */
+  --text: #222222;         /* Sort */
+  --background: #f5f5f5;   /* Hvid */
+  --background-alt: #dcded6; /* Tertiær (off-white) */
+
+  /* Dark mode colors */
+  --primary-dark: #f5f5f5;     /* Hvid i dark mode */
+  --secondary-dark: #8f9779;   /* Grønlig beholdes */
+  --accent-dark: #dcded6;      /* Off-white som accent i dark mode */
+  --text-dark: #f5f5f5;        /* Hvid tekst i dark mode */
+  --background-dark: #36454f;  /* Blå som baggrund i dark mode */
+  --background-alt-dark: #222222; /* Sort som alternativ baggrund */
+
+  /* Typography */
+  --font-main: "Helvetica", sans-serif;
+  --font-logo-1: "Druk Wide Bold", sans-serif;
+  --font-logo-2: "Druk Wide Bold", sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--background);
+  font-display: swap;
+  width: 100%;
+  overflow-x: hidden;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.main-container {
+  padding-top: 70px; /* To account for fixed navbar */
+  width: 100%;
+  flex: 1;
+}
+
+/* Dark mode theme */
+.dark-mode {
+  --primary: var(--primary-dark);
+  --secondary: var(--secondary-dark);
+  --accent: var(--accent-dark);
+  --text: var(--text-dark);
+  --background: var(--background-dark);
+  --background-alt: var(--background-alt-dark);
+}
+
+.light-mode {
+  --primary: #36454f;      /* Blå */
+  --secondary: #8f9779;    /* Grønlig */
+  --accent: #8f9779;       /* Samme som secondary */
+  --text: #222222;         /* Sort */
+  --background: #f5f5f5;   /* Hvid */
+  --background-alt: #dcded6; /* Tertiær (off-white) */
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  margin-bottom: var(--space-md);
+  transition: color 0.3s ease;
+  font-family: var(--font-logo-2);
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.25rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+p {
+  margin-bottom: var(--space-md);
+  transition: color 0.3s ease;
+}
+
+/* Updated Buttons with consistent hover effects */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  left: 0;
+}
+
+.btn-primary {
+  background-color: var(--primary, #36454f);
+  color: var(--background, #f5f5f5);
+  border: 2px solid var(--primary, #36454f);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dark-mode .btn-primary {
+  background-color: var(--secondary-dark, #8f9779);
+  color: var(--text, #222222);
+  border: 2px solid var(--secondary-dark, #8f9779);
+}
+
+.dark-mode .btn-primary:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary, #36454f);
+  border: 2px solid var(--primary, #36454f);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary, #36454f);
+  color: var(--background, #f5f5f5);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .btn-secondary {
+  color: var(--secondary-dark, #8f9779);
+  border: 2px solid var(--secondary-dark, #8f9779);
+}
+
+.dark-mode .btn-secondary:hover {
+  background-color: var(--secondary-dark, #8f9779);
+  color: var(--text, #222222);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero section specific styling */
+.hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  margin-top: 5rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+/* Sections */
+section {
+  width: 100%;
+  padding: 5rem 0;
+  transition: background-color 0.3s ease;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  padding: 0 1rem;
+}
+
+/* Animations and transitions */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* For sustainability - reduce animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  section {
+    padding: 4rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  section {
+    padding: var(--space-lg) 0;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  .btn {
+    padding: 0.6rem 1.2rem;
+    width: 100%;
+  }
+}

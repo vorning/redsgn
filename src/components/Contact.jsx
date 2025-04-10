@@ -10,34 +10,89 @@ function Contact() {
     consent: false,
   });
 
+  const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Navn validering
+    if (!formData.name.trim()) {
+      newErrors.name = "Navn er påkrævet";
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "Navnet skal være mindst 2 tegn";
+    }
+
+    // Email validering
+    if (!formData.email.trim()) {
+      newErrors.email = "Email er påkrævet";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Indtast venligst en gyldig email";
+    }
+
+    // Besked validering
+    if (!formData.message.trim()) {
+      newErrors.message = "Besked er påkrævet";
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Beskeden skal være mindst 10 tegn";
+    }
+
+    // Samtykke validering
+    if (!formData.consent) {
+      newErrors.consent = "Du skal acceptere, at vi kontakter dig";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
+    // Opdater formData
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
+
+    // Fjern fejlmeddelelse for dette felt når brugeren begynder at skrive
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: null,
+      });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form data submitted:", formData);
-    // In a real application, you would send the data to your backend here
-    setSubmitted(true);
-    // Reset form after submission
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      message: "",
-      consent: false,
-    });
 
-    // Reset submission status after 5 seconds
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 5000);
+    // Valider formen før indsendelse
+    if (validateForm()) {
+      setLoading(true);
+
+      // Simuler API kald (i en virkelig app ville du sende data til din backend her)
+      setTimeout(() => {
+        console.log("Form data submitted:", formData);
+        setLoading(false);
+        setSubmitted(true);
+
+        // Reset form efter indsendelse
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          message: "",
+          consent: false,
+        });
+
+        // Reset submission status efter 5 sekunder
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      }, 1500);
+    }
   };
 
   return (
@@ -84,7 +139,7 @@ function Contact() {
                 </svg>
               </div>
               <h3>Email os</h3>
-              <p>info@redsgn.dk</p>
+              <p>info@redesign.dk</p>
             </div>
 
             <div className="info-item">
@@ -115,9 +170,9 @@ function Contact() {
                 <p>Vi vender tilbage til dig hurtigst muligt.</p>
               </div>
             ) : (
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label htmlFor="name">Navn</label>
+              <form className="contact-form" onSubmit={handleSubmit} noValidate>
+                <div className={`form-group ${errors.name ? "error" : ""}`}>
+                  <label htmlFor="name">Navn *</label>
                   <input
                     type="text"
                     id="name"
@@ -125,11 +180,18 @@ function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    aria-invalid={errors.name ? "true" : "false"}
+                    aria-describedby={errors.name ? "name-error" : undefined}
                   />
+                  {errors.name && (
+                    <div className="error-message" id="name-error">
+                      {errors.name}
+                    </div>
+                  )}
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
+                <div className={`form-group ${errors.email ? "error" : ""}`}>
+                  <label htmlFor="email">Email *</label>
                   <input
                     type="email"
                     id="email"
@@ -137,7 +199,14 @@ function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    aria-invalid={errors.email ? "true" : "false"}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                   />
+                  {errors.email && (
+                    <div className="error-message" id="email-error">
+                      {errors.email}
+                    </div>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -151,8 +220,8 @@ function Contact() {
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="message">Besked</label>
+                <div className={`form-group ${errors.message ? "error" : ""}`}>
+                  <label htmlFor="message">Besked *</label>
                   <textarea
                     id="message"
                     name="message"
@@ -160,10 +229,23 @@ function Contact() {
                     onChange={handleChange}
                     rows="5"
                     required
+                    aria-invalid={errors.message ? "true" : "false"}
+                    aria-describedby={
+                      errors.message ? "message-error" : undefined
+                    }
                   ></textarea>
+                  {errors.message && (
+                    <div className="error-message" id="message-error">
+                      {errors.message}
+                    </div>
+                  )}
                 </div>
 
-                <div className="form-group checkbox">
+                <div
+                  className={`form-group checkbox ${
+                    errors.consent ? "error" : ""
+                  }`}
+                >
                   <input
                     type="checkbox"
                     id="consent"
@@ -171,16 +253,40 @@ function Contact() {
                     checked={formData.consent}
                     onChange={handleChange}
                     required
+                    aria-invalid={errors.consent ? "true" : "false"}
+                    aria-describedby={
+                      errors.consent ? "consent-error" : undefined
+                    }
                   />
                   <label htmlFor="consent">
-                    Jeg accepterer, at REDSGN kontakter mig vedrørende min
-                    henvendelse
+                    Jeg accepterer, at RE:DESIGN kontakter mig vedrørende min
+                    henvendelse *
                   </label>
+                  {errors.consent && (
+                    <div className="error-message" id="consent-error">
+                      {errors.consent}
+                    </div>
+                  )}
                 </div>
 
-                <button type="submit" className="btn btn-primary">
-                  Send besked
+                <button
+                  type="submit"
+                  className={`btn btn-primary ${loading ? "loading" : ""}`}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <span className="spinner"></span>
+                      Sender...
+                    </>
+                  ) : (
+                    "Send besked"
+                  )}
                 </button>
+
+                <div className="form-footer">
+                  <p className="required-note">* Påkrævede felter</p>
+                </div>
               </form>
             )}
           </div>

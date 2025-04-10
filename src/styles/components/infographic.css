@@ -1,523 +1,677 @@
 /* src/styles/components/infographic.css */
 .infographic-section {
-    padding: 5rem 0;
-    background-color: var(--background, #ffffff);
-    position: relative;
-    overflow: hidden;
+  padding: 5rem 0;
+  background-color: var(--background, #ffffff);
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.infographic-section::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: var(--secondary, #e0e0dc);
+  opacity: 0.2;
+  z-index: 0;
+  transition: background-color 0.3s ease;
+}
+
+.infographic-section::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: var(--secondary, #e0e0dc);
+  opacity: 0.15;
+  z-index: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .infographic-section::before,
+.dark-mode .infographic-section::after {
+  background-color: var(--secondary-dark, #3a3a3a);
+}
+
+.infographic-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Grid layout for infographic cards */
+.infographic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.infographic-card {
+  background-color: var(--background-alt, #f5f5f5);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.dark-mode .infographic-card {
+  background-color: var(--background-alt-dark, #1e1e1e);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.infographic-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: var(--primary, #000000);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), background-color 0.3s ease;
+  z-index: -1;
+}
+
+.dark-mode .infographic-card::before {
+  background-color: var(--primary-dark, #ffffff);
+}
+
+.infographic-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .infographic-card:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.infographic-card:hover::before {
+  transform: scaleX(1);
+}
+
+.infographic-card .icon-container {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.dark-mode .infographic-card .icon-container {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.infographic-card:hover .icon-container {
+  background-color: var(--primary, #000000);
+  color: white;
+  transform: rotate(360deg);
+}
+
+.dark-mode .infographic-card:hover .icon-container {
+  background-color: var(--primary-dark, #ffffff);
+  color: var(--background-dark, #121212);
+}
+
+.infographic-card .icon-container svg {
+  width: 32px;
+  height: 32px;
+}
+
+.infographic-card h3 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: var(--primary, #000000);
+  transition: color 0.3s ease;
+}
+
+.dark-mode .infographic-card h3 {
+  color: var(--primary-dark, #ffffff);
+}
+
+.infographic-card .stat {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary, #000000);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.dark-mode .infographic-card .stat {
+  color: var(--primary-dark, #ffffff);
+}
+
+/* Comparison section */
+.comparison-container {
+  background-color: var(--background-alt, #f5f5f5);
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin: 4rem 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark-mode .comparison-container {
+  background-color: var(--background-alt-dark, #1e1e1e);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.comparison-container h3 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--primary, #000000);
+  transition: color 0.3s ease;
+}
+
+.dark-mode .comparison-container h3 {
+  color: var(--primary-dark, #ffffff);
+}
+
+.comparison-container h3::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary, #000000);
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .comparison-container h3::after {
+  background-color: var(--primary-dark, #ffffff);
+}
+
+.comparison-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+}
+
+.comparison-item {
+  flex: 1;
+  min-width: 300px;
+  background-color: var(--background, #ffffff);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dark-mode .comparison-item {
+  background-color: var(--background-dark, #121212);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.comparison-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .comparison-item:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.comparison-item.sustainable {
+  border-left: 4px solid #55efc4;
+}
+
+.comparison-item:not(.sustainable) {
+  border-left: 4px solid #ff7675;
+}
+
+.comparison-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--secondary, #e0e0dc);
+  transition: border-color 0.3s ease;
+}
+
+.dark-mode .comparison-header {
+  border-bottom: 1px solid var(--secondary-dark, #3a3a3a);
+}
+
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.icon-wrapper.traditional {
+  background-color: rgba(255, 118, 117, 0.2);
+  color: #ff7675;
+}
+
+.icon-wrapper.sustainable {
+  background-color: rgba(85, 239, 196, 0.2);
+  color: #55efc4;
+}
+
+.icon-wrapper svg {
+  width: 24px;
+  height: 24px;
+}
+
+.comparison-title {
+  flex: 1;
+}
+
+.comparison-title h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--primary, #000000);
+  transition: color 0.3s ease;
+}
+
+.dark-mode .comparison-title h4 {
+  color: var(--primary-dark, #ffffff);
+}
+
+.size {
+  font-size: 0.9rem;
+  color: var(--text, #333333);
+  opacity: 0.7;
+  transition: color 0.3s ease;
+}
+
+.dark-mode .size {
+  color: var(--text-dark, #f5f5f5);
+}
+
+.data-metrics {
+  margin-bottom: 1.5rem;
+}
+
+.data-metrics.sustainable .metric-value {
+  color: #55efc4;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.dark-mode .metric {
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.metric:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.metric-label {
+  font-size: 0.9rem;
+  color: var(--text, #333333);
+  opacity: 0.8;
+  transition: color 0.3s ease;
+}
+
+.dark-mode .metric-label {
+  color: var(--text-dark, #f5f5f5);
+}
+
+.metric-value {
+  font-weight: 600;
+  color: var(--primary, #000000);
+  transition: color 0.3s ease;
+}
+
+.dark-mode .metric-value {
+  color: var(--primary-dark, #ffffff);
+}
+
+.vs-badge {
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary, #000000);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  font-size: 1.2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .vs-badge {
+  background-color: var(--primary-dark, #ffffff);
+  color: var(--background-dark, #121212);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.data-visualization {
+  margin-top: 1.5rem;
+}
+
+.data-bar {
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .data-bar {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.bar-fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 15px;
+  transition: width 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: 0;
+}
+
+.bar-fill.traditional {
+  background-color: #ff7675;
+}
+
+.bar-fill.sustainable {
+  background-color: #55efc4;
+}
+
+.bar-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text, #333333);
+  white-space: nowrap;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.dark-mode .bar-label {
+  color: var(--text-dark, #f5f5f5);
+}
+
+.infographic-container.animate .bar-fill.traditional {
+  width: 100%;
+}
+
+.infographic-container.animate .bar-fill.sustainable {
+  width: 32%; /* 68/211 ≈ 0.32 */
+}
+
+/* Fun facts section */
+.fun-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 4rem 0;
+}
+
+.fact-card {
+  background-color: var(--background-alt, #f5f5f5);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dark-mode .fact-card {
+  background-color: var(--background-alt-dark, #1e1e1e);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.fact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background-color: var(--primary, #000000);
+  transition: height 0.3s ease, background-color 0.3s ease;
+}
+
+.dark-mode .fact-card::before {
+  background-color: var(--primary-dark, #ffffff);
+}
+
+.fact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .fact-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.fact-card:hover::before {
+  height: 100%;
+}
+
+.fact-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.dark-mode .fact-icon {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.fact-card:hover .fact-icon {
+  background-color: var(--primary, #000000);
+  color: white;
+}
+
+.dark-mode .fact-card:hover .fact-icon {
+  background-color: var(--primary-dark, #ffffff);
+  color: var(--background-dark, #121212);
+}
+
+.fact-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.fact-card h4 {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--primary, #000000);
+  transition: color 0.3s ease;
+}
+
+.dark-mode .fact-card h4 {
+  color: var(--primary-dark, #ffffff);
+}
+
+.fact-card p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--text, #333333);
+  transition: color 0.3s ease;
+}
+
+.dark-mode .fact-card p {
+  color: var(--text-dark, #f5f5f5);
+}
+
+.infographic-cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.infographic-cta .btn {
+  padding: 0.9rem 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.infographic-cta .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.infographic-cta .btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .infographic-cta .btn:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.infographic-cta .btn:hover::before {
+  width: 100%;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .infographic-section::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    left: -100px;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background-color: var(--secondary, #e0e0dc);
-    opacity: 0.2;
-    z-index: 0;
+  to {
+    opacity: 1;
   }
-  
-  .infographic-section::after {
-    content: '';
-    position: absolute;
-    bottom: -100px;
-    right: -100px;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    background-color: var(--secondary, #e0e0dc);
-    opacity: 0.15;
-    z-index: 0;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  
-  .infographic-container {
-    position: relative;
-    z-index: 1;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* Grid layout for infographic cards */
-  .infographic-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
+}
+
+.infographic-card, .comparison-container, .fact-card {
+  animation: fadeIn 1s ease backwards;
+}
+
+.infographic-grid .infographic-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.infographic-grid .infographic-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.infographic-grid .infographic-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.fun-facts .fact-card:nth-child(1) {
+  animation-delay: 0.4s;
+}
+
+.fun-facts .fact-card:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.fun-facts .fact-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+/* Pulse animation for sustainable icon */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
-  
-  .infographic-card {
-    background-color: var(--background-alt, #f5f5f5);
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
+  50% {
+    transform: scale(1.1);
   }
-  
-  .infographic-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background-color: var(--primary, #000000);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    z-index: -1;
+  100% {
+    transform: scale(1);
   }
-  
-  .infographic-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-  }
-  
-  .infographic-card:hover::before {
-    transform: scaleX(1);
-  }
-  
-  .infographic-card .icon-container {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 50%;
-    transition: all 0.3s ease;
-  }
-  
-  .infographic-card:hover .icon-container {
-    background-color: var(--primary, #000000);
-    color: white;
-    transform: rotate(360deg);
-  }
-  
-  .infographic-card .icon-container svg {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .infographic-card h3 {
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-  }
-  
-  .infographic-card .stat {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary, #000000);
-    margin-bottom: 0.5rem;
-    line-height: 1;
-  }
-  
-  /* Comparison section */
-  .comparison-container {
-    background-color: var(--background-alt, #f5f5f5);
-    border-radius: 12px;
-    padding: 2.5rem;
-    margin: 4rem 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  }
-  
-  .comparison-container h3 {
-    text-align: center;
-    margin-bottom: 2.5rem;
-    position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .comparison-container h3::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: var(--primary, #000000);
-  }
-  
+}
+
+.icon-wrapper.sustainable {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
   .comparison-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    position: relative;
-  }
-  
-  .comparison-item {
-    flex: 1;
-    min-width: 300px;
-    background-color: white;
-    border-radius: 10px;
-    padding: 2rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .comparison-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  }
-  
-  .comparison-item.sustainable {
-    border-left: 4px solid #55efc4;
-  }
-  
-  .comparison-item:not(.sustainable) {
-    border-left: 4px solid #ff7675;
-  }
-  
-  .comparison-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--secondary, #e0e0dc);
-  }
-  
-  .icon-wrapper {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 1rem;
-    flex-shrink: 0;
-  }
-  
-  .icon-wrapper.traditional {
-    background-color: rgba(255, 118, 117, 0.2);
-    color: #ff7675;
-  }
-  
-  .icon-wrapper.sustainable {
-    background-color: rgba(85, 239, 196, 0.2);
-    color: #55efc4;
-  }
-  
-  .icon-wrapper svg {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .comparison-title {
-    flex: 1;
-  }
-  
-  .comparison-title h4 {
-    margin: 0;
-    font-size: 1.2rem;
-  }
-  
-  .size {
-    font-size: 0.9rem;
-    color: var(--text, #333333);
-    opacity: 0.7;
-  }
-  
-  .data-metrics {
-    margin-bottom: 1.5rem;
-  }
-  
-  .data-metrics.sustainable .metric-value {
-    color: #55efc4;
-  }
-  
-  .metric {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.8rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
-  }
-  
-  .metric:last-child {
-    margin-bottom: 0;
-    border-bottom: none;
-  }
-  
-  .metric-label {
-    font-size: 0.9rem;
-    color: var(--text, #333333);
-    opacity: 0.8;
-  }
-  
-  .metric-value {
-    font-weight: 600;
+    flex-direction: column;
   }
   
   .vs-badge {
-    width: 60px;
-    height: 60px;
-    background-color: var(--primary, #000000);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    font-size: 1.2rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  .data-visualization {
-    margin-top: 1.5rem;
-  }
-  
-  .data-bar {
-    height: 30px;
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 15px;
     position: relative;
-    overflow: hidden;
-  }
-  
-  .bar-fill {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 15px;
-    transition: width 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    width: 0;
-  }
-  
-  .bar-fill.traditional {
-    background-color: #ff7675;
-  }
-  
-  .bar-fill.sustainable {
-    background-color: #55efc4;
-  }
-  
-  .bar-label {
-    position: absolute;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text, #333333);
-    white-space: nowrap;
-    z-index: 1;
+    transform: translateX(-50%);
+    margin: 1rem 0;
   }
   
-  .infographic-container.animate .bar-fill.traditional {
-    width: 100%;
-  }
-  
-  .infographic-container.animate .bar-fill.sustainable {
-    width: 32%; /* 68/211 ≈ 0.32 */
-  }
-  
-  /* Fun facts section */
   .fun-facts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin: 4rem 0;
+    grid-template-columns: 1fr;
   }
   
-  .fact-card {
-    background-color: var(--background-alt, #f5f5f5);
-    border-radius: 10px;
+  .comparison-container {
     padding: 1.5rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
   }
   
-  .fact-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 0;
-    background-color: var(--primary, #000000);
-    transition: height 0.3s ease;
+  .comparison-item {
+    min-width: auto;
   }
-  
-  .fact-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  }
-  
-  .fact-card:hover::before {
-    height: 100%;
-  }
-  
-  .fact-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    transition: all 0.3s ease;
-  }
-  
-  .fact-card:hover .fact-icon {
-    background-color: var(--primary, #000000);
-    color: white;
-  }
-  
-  .fact-icon svg {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .fact-card h4 {
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    font-size: 1.1rem;
-  }
-  
-  .fact-card p {
-    margin: 0;
-    line-height: 1.6;
-  }
-  
-  .infographic-cta {
-    text-align: center;
-    margin-top: 3rem;
-  }
-  
-  .infographic-cta .btn {
-    padding: 0.9rem 2rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .infographic-cta .btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: width 0.3s ease;
-    z-index: -1;
-  }
-  
-  .infographic-cta .btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .infographic-cta .btn:hover::before {
-    width: 100%;
-  }
-  
-  /* Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .infographic-card, .comparison-container, .fact-card {
-    animation: fadeIn 1s ease backwards;
-  }
-  
-  .infographic-grid .infographic-card:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  
-  .infographic-grid .infographic-card:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  
-  .infographic-grid .infographic-card:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  
-  .fun-facts .fact-card:nth-child(1) {
-    animation-delay: 0.4s;
-  }
-  
-  .fun-facts .fact-card:nth-child(2) {
-    animation-delay: 0.5s;
-  }
-  
-  .fun-facts .fact-card:nth-child(3) {
-    animation-delay: 0.6s;
-  }
-  
-  /* Pulse animation for sustainable icon */
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  .icon-wrapper.sustainable {
-    animation: pulse 2s infinite ease-in-out;
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .comparison-wrapper {
-      flex-direction: column;
-    }
-    
-    .vs-badge {
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-      margin: 1rem 0;
-    }
-    
-    .fun-facts {
-      grid-template-columns: 1fr;
-    }
-    
-    .comparison-container {
-      padding: 1.5rem;
-    }
-    
-    .comparison-item {
-      min-width: auto;
-    }
-  }
+}
