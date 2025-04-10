@@ -1,4 +1,6 @@
 import "../styles/components/about.css";
+import omosImage from "/src/assets/omos.jpg";
+
 
 function About() {
   return (
@@ -50,7 +52,7 @@ function About() {
 
           <div className="about-image">
             <img
-              src="/src/assets/omos.jpg"
+              src={omosImage}
               alt="RE:DESIGN teamet arbejder på webdesign projekter"
               className="about-img"
             />

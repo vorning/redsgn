@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/components/navbar.css";
-import "/src/assets/logo.png";
+import logo from "/src/assets/logo.png";
+
 
 function Navbar({ darkMode, setDarkMode }) {
   const [scrolled, setScrolled] = useState(false);
@@ -56,9 +57,9 @@ function Navbar({ darkMode, setDarkMode }) {
         <div className="logo">
           <Link to="/">
             {darkMode ? (
-              <img src="src/assets/logo.png" alt="REDSGN" width="140" />
+              <img src={logo} alt="RE:DESIGN" width="140" />
             ) : (
-              <img src="src/assets/logo.png" alt="RE:DESIGN" width="140" />
+              <img src={logo} alt="RE:DESIGN" width="140" />
             )}
           </Link>
         </div>
